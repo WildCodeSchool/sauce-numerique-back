@@ -1,7 +1,7 @@
 
 const express = require('express');
 const Router = express.Router();
-const mysqlConnection = require('../connection');
+const { Partners } = require('./models');
 
 Router.get('/', (req, res) => {
   mysqlConnection.query('SELECT * FROM partenaire', (err, rows) => {

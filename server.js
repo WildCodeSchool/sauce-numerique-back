@@ -1,24 +1,25 @@
+require('dotenv').config();
+const { Partners } = require('./models');
 const express = require('express');
-const bodyParser = require('body-parser');
+
 const app = express();
 
-const PartnersRoutes = require('./api/routes/partners');
+app.use(express.urlencoded({ extended: true}));
+app.use(express.json());
 
-app.use(
-  bodyParser.urlencoded({
-    extended: false,
-  }),
-);
+app.get('/api/v1/partners', async(req, res) => {
+    const allPartners = await Partners.findAll()
+    res.send(allPartners) 
+    });
 
-require('dotenv').config();
-const cors = require('cors');
-const port = 5000;
 
-app.use(cors())
-app.use(bodyParser.json());
-app.use('/', PartnersRoutes);
+app.post('/api/v1/partners', async (req, res) => {
+  const { name, logo } = req.body
+  const newPartners =await Partners.create({name, logo})
+  res.send(newPartners);
+});
 
-app.listen(port, () => 
-  // eslint-disable-next-line no-console
-  console.log(`Serveur up and running on port ${port}!`)
-);
+
+app.listen(3000,() => {
+  console.log('Listening on port 3000')
+})
