@@ -12,6 +12,6 @@ app.use("/api/v1/ressources", require('./routes/ressources'));
 
 
 
-app.listen(5000,() => {
+app.listen(process.env.port || 5000,() => {
   console.log('Listening on port 5000')
 })
