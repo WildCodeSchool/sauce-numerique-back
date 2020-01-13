@@ -10,7 +10,7 @@ router.get('/:id', async(req,res) => {
     });
 
 router.get('/', async(req, res) => {
-    const { count, rows } = await Partners.findAndCountAll()
+    const { count, rows } = await Ressources.findAndCountAll()
     const AllRessources = await Ressources.findAll()
     res.header('Access-Control-Expose-Headers', 'X-Total-Count');
     res.header('X-Total-Count', count);
@@ -35,15 +35,6 @@ router.delete('/:id', async (req, res) => {
     await Ressources.destroy({ where: { id }});
     res.send(id);
 });
-
-
-
-
-
-
-
-
-
 
 
 module.exports = router;
