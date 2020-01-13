@@ -10,7 +10,10 @@ router.get('/:id', async(req,res) => {
     });
 
 router.get('/', async(req, res) => {
+    const { count, rows } = await Partners.findAndCountAll()
     const AllRessources = await Ressources.findAll()
+    res.header('Access-Control-Expose-Headers', 'X-Total-Count');
+    res.header('X-Total-Count', count);
     res.send(AllRessources) 
     });
   
