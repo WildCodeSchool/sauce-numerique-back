@@ -19,11 +19,11 @@ module.exports =
     "dialect": "mysql",
   },
   "production": {
-    "username": process.env.MYSQL_USER,
-    "port": process.env.MYSQL_PORT,
-    "password": process.env.MYSQL_PASSWORD,
-    "database": process.env.MYSQL_DATABASE,
-    "host": process.env.MYSQL_HOST,
+    "username": process.env.JAWSDB_USER,
+    "port": process.env.JAWSDB_PORT,
+    "password": process.env.JAWSDB_PASSWORD,
+    "database": process.env.JAWSDB_DATABASE,
+    "host": process.env.JAWSDB_HOST,
     "dialect": "mysql"
   }
 }
