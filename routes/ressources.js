@@ -16,6 +16,10 @@ router.get('/', async(req, res) => {
     res.header('X-Total-Count', count);
     res.send(AllRessources) 
     });
+// router.get('/limit', async(req, res) => {
+//     const AllRessources = await Ressources.findAll({limit: 2, offset:1, subQuery: false})
+//     res.send(AllRessources) 
+//     });
   
 router.post('/', async (req, res) => {
     const { title, theme, description } = req.body

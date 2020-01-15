@@ -10,8 +10,6 @@ app.use(express.json());
 app.use("/api/v1/partners", require('./routes/partners'));
 app.use("/api/v1/ressources", require('./routes/ressources'));
 
-
-
 app.listen(process.env.PORT || 5000,() => {
   console.log('Listening on port '+ (process.env.PORT || 5000));
 })
