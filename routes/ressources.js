@@ -9,7 +9,6 @@ router.get('/:id', async(req,res) => {
     res.send(oneRessources)
     });
 
-// resources?limit=7
 router.get('/', async(req, res) => {
     const { count, rows } = await Ressources.findAndCountAll({ limit: Number(req.query.limit) })
     res.header('Access-Control-Expose-Headers', 'X-Total-Count');
