@@ -10,7 +10,7 @@ router.get('/:id', async(req,res) => {
     });
 
 router.get('/', async(req, res) => {
-    const { count, rows } = await Ressources.findAndCountAll({ limit: Number(req.query.limit) })
+    const { count, rows } = await Ressources.findAndCountAll(req.query.limit && { limit: Number(req.query.limit) })
     res.header('Access-Control-Expose-Headers', 'X-Total-Count');
     res.header('X-Total-Count', count);
     res.send(rows) 
