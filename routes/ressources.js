@@ -1,7 +1,7 @@
-const { Ressources }  = require('../models');
+const { Ressources, Sequelize }  = require('../models');
 const express = require('express');
 const router  = express.Router();
-
+const { Op } = Sequelize
 
 router.get('/:id', async(req,res) => {
     const { id } = req.params;
@@ -10,12 +10,29 @@ router.get('/:id', async(req,res) => {
     });
 
 router.get('/', async(req, res) => {
-    const { count, rows } = await Ressources.findAndCountAll(req.query.limit && { limit: Number(req.query.limit) })
+    const { limit, q, _order, term, _sort, _end, _start } = req.query
+    const { count, rows } = await Ressources.findAndCountAll({
+        where: {
+            ...q && {
+                title: {
+                    [Op.substring]: q
+                }
+            },     
+        },
+        ...limit && { limit: Number(limit) },
+        limit: _end - _start,
+        offset: Number(_start),
+        order: [
+            [
+                _sort, _order
+            ]
+        ]
+    })
     res.header('Access-Control-Expose-Headers', 'X-Total-Count');
     res.header('X-Total-Count', count);
     res.send(rows) 
 });
-    
+
   
 router.post('/', async (req, res) => {
     const { title, theme, description } = req.body
