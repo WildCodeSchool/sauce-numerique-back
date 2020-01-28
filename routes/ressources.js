@@ -8,18 +8,22 @@ router.get('/:id', async(req,res) => {
     const oneRessources = await Ressources.findOne({where: { id }})
     res.send(oneRessources)
     });
-
+    
 router.get('/', async(req, res) => {
     const { limit, q, _order, term, _sort, _end, _start } = req.query
     const { count, rows } = await Ressources.findAndCountAll({
-        where: {
+         where: {
             ...q && {
                 title: {
                     [Op.substring]: q
                 }
-            },     
+            },
+            ...term && {
+                id: {
+                    [Op.substring]: term
+                }
+            }       
         },
-        ...limit && { limit: Number(limit) },
         limit: _end - _start,
         offset: Number(_start),
         order: [
