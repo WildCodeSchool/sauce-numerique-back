@@ -11,6 +11,6 @@ app.use("/api/v1/partners", require('./routes/partners'));
 app.use("/api/v1/ressources", require('./routes/ressources'));
 app.use("/api/v1/ressourcesFront", require('./routes/ressourcesFront'));
 
-app.listen(process.env.PORT || 5000,() => {
-  console.log('Listening on port '+ (process.env.PORT || 5000));
+app.listen(process.env.JAWSDB_PORT || 5000,() => {
+  console.log('Listening on port '+ (process.env.JAWSDB_PORT || 5000));
 })
