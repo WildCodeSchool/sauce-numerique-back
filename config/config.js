@@ -4,11 +4,10 @@ require('dotenv').config();
 module.exports = 
 {
   "development": {
-    "username": process.env.JAWSDB_USER,
-    "port": process.env.JAWSDB_PORT,
-    "password": process.env.JAWSDB_PASSWORD,
-    "database": process.env.JAWSDB_DATABASE,
-    "host": process.env.JAWSDB_HOST,
+    "username": process.env.MYSQL_USER,
+    "password": process.env.MYSQL_PASSWORD,
+    "database": process.env.MYSQL_DATABASE,
+    "host": process.env.MYSQL_HOST,
     "dialect": "mysql"
   },
   "test": {
