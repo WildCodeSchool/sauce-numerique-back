@@ -39,15 +39,15 @@ router.get('/', async(req, res) => {
 
   
 router.post('/', async (req, res) => {
-    const { title, theme, description } = req.body
-    const NewRessources =await Ressources.create({ title, theme, description})
+    const { title, theme, description, lien } = req.body
+    const NewRessources =await Ressources.create({ title, theme, description, lien})
     res.send(NewRessources);
   });
 
 router.put('/:id', async (req, res) => {
     const { id } = req.params;
-    const { title, theme, description } = req.body;
-    const UpdateRessources = await Ressources.update({ title, theme, description }, {where: { id }});
+    const { title, theme, description, lien } = req.body;
+    const UpdateRessources = await Ressources.update({ title, theme, description, lien }, {where: { id }});
     res.send(UpdateRessources);
 });
 
